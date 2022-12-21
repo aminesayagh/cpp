@@ -12,3 +12,27 @@ Polynome& Polynome::operator=(const Polynome &copiePolynome){
     }
     return *this;
 };
+
+
+Polynome& Polynome::operator+ (const Polynome &addPolynome){
+    Polynome polynomeSave = *this;
+
+    int minDegre = addPolynome.degre;
+    if(degre < addPolynome.degre){
+        delete coefficients;
+        coefficients = new double[addPolynome.degre];
+        for(int i = 0; i < degre; i++) {
+            coefficients[i] = polynomeSave.coefficients[i];
+        }
+        for(int i = degre; i < addPolynome.degre; i++) {
+            coefficients[i] = addPolynome.coefficients[i];
+        }
+
+        degre = addPolynome.degre;
+        minDegre = degre;
+    }
+
+    for(int i = 0; i < minDegre; i++){
+        coefficients[i] += addPolynome.coefficients[i];
+    }
+};
