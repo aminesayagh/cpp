@@ -28,6 +28,7 @@ int main () {
     instrumentPiano->MakeSound();
 
     Instrument *instrument[2] = { instrumentPiano, instrumentAccordion };
+    
     for(int i = 0; i < 2; i++){
         instrument[i]->MakeSound();
     }
