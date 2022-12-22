@@ -65,6 +65,7 @@ PileChar::PileChar(const PileChar &lastPile): max(lastPile.max), sommet(lastPile
     cout << "PileChar(const PileChar &p) : " << this << "\n";
 }
 
+
 PileChar& PileChar::operator=(const PileChar &p) {
     if(this != &p) {
         delete[] pile;
@@ -85,3 +86,4 @@ PileChar& PileChar::operator=(const PileChar &p) {
 
     return *this;
 }
+
