@@ -63,6 +63,47 @@ Polynome& Polynome::operator+ (const Polynome &addPolynome){
 
     return *this;
 };
+Polynome& Polynome::operator* (const Polynome &multiplePolynome) {
+    Polynome polynomeSave = *this;
+
+    if(degre < multiplePolynome.degre){
+        delete coefficients;
+        coefficients = new double[multiplePolynome.degre];
+        for(int i = 0; i <= degre; i++) {
+            coefficients[i] = polynomeSave.coefficients[i] + multiplePolynome.coefficients[i];
+        }
+        for(int i = degre + 1; i <= multiplePolynome.degre; i++) {
+            coefficients[i] = multiplePolynome.coefficients[i];
+        }
+
+        degre = multiplePolynome.degre;
+    } else { 
+        for(int i = 0; i <= multiplePolynome.degre; i++) {
+            coefficients[i] += multiplePolynome.coefficients[i];
+        }
+    }
+    return *this;
+}
+
+ostream& operator<<(ostream& cout,const Polynome& pn){	
+	for(int i=pn.degre+1;i>0;i--){
+		cout<<pn.coefficients[i]<<"x"<<i;
+	}
+	cout<<endl;
+	return cout;
+}
+
+istream& operator>>(istream& cin,Polynome& p){
+	int x;
+	cout<<"le degre du polynome::";
+	cin>>p.degre;
+	p.coefficients=new double[p.degre+1];
+	cout<<endl;
+	for(int i=0;i<p.degre+1;i++){
+		cin>>p.coefficients[i];
+	}
+	return cin;
+}
 
 // USE CASES
 void Polynome::afficher(){

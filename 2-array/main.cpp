@@ -6,7 +6,9 @@ int main () {
     int size;
     cout << "Size: ";
     cin >> size;
+
     int *arr = new int[size];
+
     cout << "\nEnter Array Elements: ";
     for (int i = 0; i < size; i++) {
         cout << "array[" << i << "]";
@@ -14,10 +16,11 @@ int main () {
     }
 
     for(int i = 0; i < size; i++) {
-        cout << *(arr+i) << " ";
+        cout << arr[i] << " ";
     }
 
-    delete[]arr;
+    delete arr;
     arr = NULL;
+
     return 0;
 }

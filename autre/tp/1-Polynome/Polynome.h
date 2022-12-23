@@ -19,4 +19,8 @@ class Polynome{
         // operator
         Polynome &operator=(const Polynome &copiePolynome);
         Polynome &operator+(const Polynome &addPolynome);
+        Polynome &operator*(const Polynome &multiplePolynome);
+
+        friend ostream& operator<<(ostream&,const Polynome&);//saisie 
+		friend istream& operator>>(istream&,Polynome&);// l'affichage 
 };

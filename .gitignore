@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+matrice.cpp
+settings.json
