@@ -7,7 +7,10 @@ int main () {
     cout << "Size: ";
     cin >> size;
 
-    int *arr = new int[size];
+    int *arr = NULL;
+    arr = new int[size];
+
+    int *arr2 = new int[size];
 
     cout << "\nEnter Array Elements: ";
     for (int i = 0; i < size; i++) {
