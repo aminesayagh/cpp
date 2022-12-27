@@ -40,7 +40,6 @@ Polynome& Polynome::operator=(const Polynome &copiePolynome){
     return *this;
 };
 
-
 Polynome& Polynome::operator+ (const Polynome &addPolynome){
     Polynome polynomeSave = *this;
 
@@ -106,12 +105,11 @@ istream& operator>>(istream& cin,Polynome& p){
 }
 
 // USE CASES
-void Polynome::afficher(){
+void Polynome::afficher() const{
     cout << "Polynome a afficher" << endl;
     for(int i = degre; i >= 0; i--) {
         cout << coefficients[i];
         if(i != 0) cout << "x^" << i << " + ";
     }
     cout << endl;
-
 }

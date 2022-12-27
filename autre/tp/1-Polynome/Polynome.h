@@ -14,7 +14,7 @@ class Polynome{
         Polynome(const Polynome &lastPolynome);
 
         // usecases
-        void afficher();
+        void afficher() const;
 
         // operator
         Polynome &operator=(const Polynome &copiePolynome);

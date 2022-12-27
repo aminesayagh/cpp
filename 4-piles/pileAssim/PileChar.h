@@ -15,6 +15,6 @@ public:
     int compter();
      int taille(); 
     void afficher();
-    void empiler();
-    void depiler();
+    void empiler(char *x);
+   char *depiler();
 };

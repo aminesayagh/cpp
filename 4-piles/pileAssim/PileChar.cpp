@@ -30,5 +30,20 @@ void PileChar::empiler(char x)
     }
     else
     {
-        pile[sommet] = x;]
+        pile[sommet+1] = x;
+        sommet=x+1;
     }
+}
+char *PileChar::depiler(){
+    char *y;
+    if(sommet==0){
+        cout << "pile vide!";
+    }
+    else{
+        y = pile[sommet];
+        pile[sommet] = NULL;
+        sommet-1;
+}
+return y;
+}
+
