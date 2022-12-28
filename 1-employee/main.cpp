@@ -8,6 +8,8 @@ class AbstractEmployee {
 };
 
 class Employee:AbstractEmployee {
+    protected:
+        int salary;
     private: //
         string name;
         string company;
@@ -71,6 +73,7 @@ int main() {
     employee_1.setAge(lastAge + 10);
 
     employee_1.askForPromotion();
+    
 
     employee_1.introduceYourself();
 }

@@ -6,15 +6,21 @@ class PileChar
 {
 private:
 static const int tailleDefaut = 50; 
-    const int max;
-    int sommet;
+    int max;
+    int sommet = 0;
     char *pile;
 public:
     PileChar(int taille=tailleDefaut);
+    PileChar(const PileChar &p);
     ~PileChar();
     int compter();
      int taille(); 
     void afficher();
     void empiler(char *x);
-   char *depiler();
+    char* getPile();
+    int getMax();
+    char *depiler();
+   PileChar& operator=(const PileChar &p);
+
 };
+ void affiche_inverse( PileChar pile);
