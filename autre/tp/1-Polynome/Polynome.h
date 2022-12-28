@@ -23,5 +23,5 @@ class Polynome{
         Polynome &operator*(const Polynome &multiplePolynome);
 
         friend ostream& operator<<(ostream&,const Polynome&);//saisie 
-	friend istream& operator>>(istream&,Polynome&);// l'affichage 
+	    friend istream& operator>>(istream&,Polynome&);// l'affichage 
 };

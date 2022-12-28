@@ -105,12 +105,13 @@ istream& operator>>(istream& cin,Polynome& p){
 }
 
 Polynome Polynome::primitive() const {
-    Polynome res;
-    res.degre = degre + 1;
+    int newDegre = degre + 1;
+    double *newCoefficients = new double[newDegre];
     for (int i = 1; i <= degre + 1; i++) {
-      res.coefficients[i] = coefficients[i - 1] / i;
+      newCoefficients[i] = coefficients[i - 1] / i;
     }
-    return res;
+    Polynome primitive(newDegre, newCoefficients);
+    return primitive;
   }
 
 // USE CASES
