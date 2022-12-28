@@ -104,6 +104,15 @@ istream& operator>>(istream& cin,Polynome& p){
 	return cin;
 }
 
+Polynome Polynome::primitive() const {
+    Polynome res;
+    res.degre = degre + 1;
+    for (int i = 1; i <= degre + 1; i++) {
+      res.coefficients[i] = coefficients[i - 1] / i;
+    }
+    return res;
+  }
+
 // USE CASES
 void Polynome::afficher() const{
     cout << "Polynome a afficher" << endl;

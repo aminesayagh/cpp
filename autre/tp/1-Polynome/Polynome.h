@@ -15,6 +15,7 @@ class Polynome{
 
         // usecases
         void afficher() const;
+        Polynome primitive() const;
 
         // operator
         Polynome &operator=(const Polynome &copiePolynome);
