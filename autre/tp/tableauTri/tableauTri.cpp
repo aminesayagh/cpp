@@ -1,5 +1,6 @@
 #include "tableauTri.h"
 
+// CONSTRUCTORS
 TableauTri::TableauTri(int taille){
     taille = taille;
     tab = new float[taille];
@@ -35,6 +36,7 @@ TableauTri& TableauTri::operator=(const TableauTri &t){
     return *this;
 }
 
+// METHODS
 int TableauTri::frequence(float x){
     int n = 0;
     for(int i= 0; i < taille; i++) {
@@ -51,4 +53,46 @@ void TableauTri::supprimer(float x) {
         }
         tab[i] = tab[i + j];
     }
+}
+
+int TableauTri::operator>(float x) {
+    for(int i = 0; i < taille; i++) {
+        if(tab[i] == x) return i;
+        if(tab[i] > x) return -1;
+    }
+    return -1;
+}
+
+TableauTri& TableauTri::operator+(float x) {
+    int j = 0;
+    float *newTab = new float[taille + 1];
+    for(int i = 0; i < taille; i++){
+        if(tab[i+1] >= x && j != 1) {
+            newTab[i] = x;
+            j++;
+            taille++;
+        }
+        newTab[i + j] = tab[i];
+    }
+    delete tab;
+
+    tab = newTab;
+    return *this;
+}
+
+TableauTri& TableauTri::operator+(const TableauTri& t){
+    int j= 0;
+    float *newTab = new float(taille + t.taille);
+
+    for(int i = 0; i < taille; i++){
+        while(tab[i+1] >= t.tab[j]){
+            newTab[i+j] = t.tab[j];
+            j++;
+        }
+        newTab[i + j] = tab[i];
+    }
+    delete tab;
+    tab = newTab;
+    
+    return *this;
 }

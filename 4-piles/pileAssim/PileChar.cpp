@@ -58,7 +58,7 @@ PileChar::PileChar(const PileChar &p) : max(p.max), sommet(p.sommet)
     }
     cout << "Pilchar(const PileChar &p) = " << this << endl;
 }
-PileChar &PileChar::operator=(const PileChar &p)
+PileChar& PileChar::operator=(const PileChar &p)
 {
     if (this != &p)
     {

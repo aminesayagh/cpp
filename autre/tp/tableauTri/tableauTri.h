@@ -15,6 +15,10 @@ class TableauTri{
         ~TableauTri();
 
         TableauTri& operator=(const TableauTri &t);
+        int operator>(float x);
+        TableauTri& operator+(float x);
+        TableauTri& operator+(const TableauTri &t);
+
 
         int frequence(float x);
         void supprimer(float x);
