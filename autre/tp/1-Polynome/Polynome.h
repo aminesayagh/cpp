@@ -1,5 +1,6 @@
 #define DEBUG
-
+#include <iostream>
+using namespace std;
 
 class Polynome{
     private: 

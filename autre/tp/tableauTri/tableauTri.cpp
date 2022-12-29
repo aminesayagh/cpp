@@ -86,6 +86,7 @@ TableauTri& TableauTri::operator+(const TableauTri& t){
 
     for(int i = 0; i < taille; i++){
         while(tab[i+1] >= t.tab[j]){
+            taille++;
             newTab[i+j] = t.tab[j];
             j++;
         }
@@ -93,6 +94,37 @@ TableauTri& TableauTri::operator+(const TableauTri& t){
     }
     delete tab;
     tab = newTab;
-    
+
     return *this;
 }
+
+TableauTri& TableauTri::operator--(){
+    for(int i = 0; i < taille; i++){
+        tab[i]++;
+    }
+    return *this;
+}
+
+
+TableauTri& TableauTri::operator*(float r){
+    for(int i = 0; i < taille; i++){
+        tab[i] *= r;
+    }
+    return *this;
+}
+
+ostream& TableauTri::operator<<(ostream&){
+    for(int i = 0; i < taille; i++){
+        cout << "tab[" << i << "] = " << tab[i] << endl;
+    }
+    return cout;
+}
+
+istream& TableauTri::operator>>(istream&) {
+    for(int i = 0; i < taille; i++){
+        cout << "Saisir tab[" << i << "] = "; 
+        cin >> tab[i];
+    }
+    return cin;
+}
+

@@ -18,9 +18,23 @@ class TableauTri{
         int operator>(float x);
         TableauTri& operator+(float x);
         TableauTri& operator+(const TableauTri &t);
+        TableauTri &operator--();
+        TableauTri &operator*(float r);
 
+        ostream& operator<<(ostream&);
+        istream& operator>>(istream&);
 
         int frequence(float x);
         void supprimer(float x);
 
+        int getTaille(){
+            return taille;
+        }
+        float* getTab(){
+            return tab;
+        }
+
+        void setCaseOfTable(int c, float value){
+            tab[c] = value;
+        }
 };
