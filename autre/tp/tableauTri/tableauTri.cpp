@@ -42,6 +42,7 @@ int TableauTri::frequence(float x){
     for(int i= 0; i < taille; i++) {
         if(tab[i] == x) n++;
     }
+    return n;
 }
 
 void TableauTri::supprimer(float x) {
@@ -55,12 +56,12 @@ void TableauTri::supprimer(float x) {
     }
 }
 
-int TableauTri::operator>(float x) {
+bool TableauTri::operator>(float x) {
     for(int i = 0; i < taille; i++) {
         if(tab[i] == x) return i;
-        if(tab[i] > x) return -1;
+        if(tab[i] > x) return false;
     }
-    return -1;
+    return true;
 }
 
 TableauTri& TableauTri::operator+(float x) {
@@ -113,18 +114,18 @@ TableauTri& TableauTri::operator*(float r){
     return *this;
 }
 
-ostream& TableauTri::operator<<(ostream&){
-    for(int i = 0; i < taille; i++){
-        cout << "tab[" << i << "] = " << tab[i] << endl;
+ostream& operator<<(ostream& ot, const TableauTri &t){
+    for(int i = 0; i < t.taille; i++){
+        ot << "tab[" << i << "] = " << t.tab[i] << endl;
     }
-    return cout;
+    return ot;
 }
 
-istream& TableauTri::operator>>(istream&) {
-    for(int i = 0; i < taille; i++){
+istream& operator>>(istream& in, TableauTri &t) {
+    for(int i = 0; i < t.taille; i++){
         cout << "Saisir tab[" << i << "] = "; 
-        cin >> tab[i];
+        in >> t.tab[i];
     }
-    return cin;
+    return in;
 }
 
