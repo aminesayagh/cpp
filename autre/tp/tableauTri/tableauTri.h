@@ -41,8 +41,8 @@ class TableauTriResp:TableauTri{
         int elementRepeter;
         int elementNonRepeter;
         bool setCaseOfTable(float newValue){
-            bool exist = (*this)> newValue;
-            if(!exist) {
+            bool noError = (*this)> newValue;
+            if(!noError) {
                 cout << "ERROR" << endl;
                 return false;
             }
