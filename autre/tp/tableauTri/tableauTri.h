@@ -65,8 +65,8 @@ class TableauTriResp:TableauTri{
         friend ostream& operator<<(ostream& os, const TableauTriResp &t){
             os << t<< endl;
         }
-        friend ostream& operator>>(ostream&, TableauTriResp &){
-            for(int i =)
+        friend istream& operator>>(istream&, TableauTriResp &){
+            // for(int i = 0; i < t)
         }
         
 };
