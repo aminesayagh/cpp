@@ -11,7 +11,7 @@ protected:
     int sommet;
 
 public:
-    TableauTri(int taille = tailleDefault);
+    TableauTri();
     TableauTri(int taille);
     TableauTri(const TableauTri &t);
     ~TableauTri();

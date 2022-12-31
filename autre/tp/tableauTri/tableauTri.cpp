@@ -1,9 +1,9 @@
 #include "tableauTri.h"
 
 // CONSTRUCTORS
-TableauTri::TableauTri(int taille)
+TableauTri::TableauTri()
 {
-    taille = taille;
+    taille = 10;
     tab = new float[taille];
 }
 
