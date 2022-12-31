@@ -62,7 +62,22 @@ private:
 
 public:
     TableauTriResp(int taille);
-    TableauTriResp(const TableauTri &t) : TableauTri(t) {}
+    TableauTriResp(const TableauTri &t) : TableauTri(t)
+    {
+        for (int i = 0; i < taille; i++)
+        {
+            int nombreFrequence = frequence(tab[i]);
+            if (nombreFrequence == 0)
+            {
+                elementNonRepeter++;
+            }
+            else if (nombreFrequence == 1)
+            {
+                elementNonRepeter--;
+                elementRepeter++;
+            }
+        }
+    }
 
     friend ostream &operator<<(ostream &os, const TableauTriResp &t)
     {
