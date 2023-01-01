@@ -30,6 +30,12 @@ int main()
     cin >> value;
     int frequenceTableau1 = monTableau1.frequence(value);
 
+    if(frequenceTableau1 == -1){
+        cout << "frequence not exist" << endl;
+    }else{
+        cout << "frequence exist" << endl;
+    }
+
     
 
     return 0;
