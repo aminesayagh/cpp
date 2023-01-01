@@ -23,6 +23,13 @@ int main()
 
     cout << monTableau3 << endl;
 
+    TableauTri monTableau4 = monTableau1;
+
+    float value;
+    cout << "Value : " << endl;
+    cin >> value;
+    int frequenceTableau1 = monTableau1.frequence(value);
+
     
 
     return 0;
