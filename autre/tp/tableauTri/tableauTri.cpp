@@ -1,9 +1,8 @@
 #include "tableauTri.h"
 
 // CONSTRUCTORS
-TableauTri::TableauTri()
+TableauTri::TableauTri(): taille(10)
 {
-    taille = 10;
     tab = new float[taille];
 }
 
@@ -16,16 +15,21 @@ TableauTri::TableauTri(const TableauTri &t) : taille(t.taille)
 {
     delete tab;
     tab = new float[t.taille];
+
     for (int i = 0; i < t.taille; i++)
     {
         tab[i] = t.tab[i];
+        nbrElement++;
     }
 }
 
 TableauTri::~TableauTri()
 {
-    taille = 0;
     delete tab;
+    tab = NULL;
+
+    taille = 0;
+    nbrElement = 0;
 }
 
 TableauTri &TableauTri::operator=(const TableauTri &t)
@@ -38,6 +42,7 @@ TableauTri &TableauTri::operator=(const TableauTri &t)
         for (int i = 0; i < t.taille; i++)
         {
             tab[i] = t.tab[i];
+            nbrElement++;
         }
     }
 
@@ -59,27 +64,27 @@ int TableauTri::frequence(float x)
 void TableauTri::supprimer(float x)
 {
     int j = 0;
-    for (int i = 0; i < taille; i++)
+    for (int i = 0; i < nbrElement; i++)
     {
         if (tab[i] == x)
         {
             j++;
-            taille--;
+            nbrElement--;
+            tab[i] = tab[i + j + 1];
         }
-        tab[i] = tab[i + j];
     }
 }
 
-bool TableauTri::operator>(float x)
+int TableauTri::operator>(float x)
 {
-    for (int i = 0; i < taille; i++)
+    for (int i = 0; i < nbrElement; i++)
     {
         if (tab[i] == x)
             return i;
         if (tab[i] > x)
-            return false;
+            return -1;
     }
-    return true;
+    return -1;
 }
 
 TableauTri &TableauTri::operator+(float x)
@@ -109,7 +114,7 @@ TableauTri &TableauTri::operator+(const TableauTri &t)
 
     for (int i = 0; i < taille; i++)
     {
-        while (tab[i + 1] >= t.tab[j])
+        if (tab[i + 1] >= t.tab[j])
         {
             taille++;
             newTab[i + j] = t.tab[j];

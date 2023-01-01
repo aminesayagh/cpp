@@ -11,7 +11,6 @@ void supprimer(int *t, int x, int nbrElement){
             nbrElement--;
             t[i] = t[i + j + 1];
         }
-
     }
 }
 

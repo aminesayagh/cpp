@@ -5,10 +5,9 @@ using std::string;
 class TableauTri
 {
 protected:
-    static const int tailleDefault = 50;
-    float *tab;
     int taille;
-    int sommet;
+    float *tab = NULL;
+    int nbrElement = 0;
 
 public:
     TableauTri();
@@ -17,7 +16,7 @@ public:
     ~TableauTri();
 
     TableauTri &operator=(const TableauTri &t);
-    bool operator>(float x);
+    int operator>(float x);
     TableauTri &operator+(float x);
     TableauTri &operator+(const TableauTri &t);
     TableauTri &operator--();
@@ -43,15 +42,6 @@ public:
 
     int frequence(float x);
     void supprimer(float x);
-
-    int getTaille()
-    {
-        return taille;
-    }
-    float *getTab()
-    {
-        return tab;
-    }
 };
 
 class TableauTriResp : TableauTri
