@@ -95,6 +95,24 @@ TableauTri &TableauTri::operator+(float x)
 {
     int j = 0;
     // premier case
+    int indexOfX = -1;
+    for(int i = 0; i < nbrElement && indexOfX == -1; i++){
+        if(tab[i] >= x){
+            indexOfX = i;
+        }
+    }
+    if(indexOfX == -1){
+        tab[nbrElement] = x;
+        nbrElement++;
+    }else{
+        for(int i = nbrElement; i > indexOfX; i--){
+            tab[i] = tab[i-1];
+        }
+        tab[indexOfX] = x;
+        nbrElement++;
+    }
+    return *this;
+    cout << indexOfX << endl;
     if (nbrElement == 0)
     {
         tab[0] = x;
@@ -106,9 +124,11 @@ TableauTri &TableauTri::operator+(float x)
         // case au millieu
         for (int i = 0; i < nbrElement; i++)
         {
+
             if (x <= tab[i])
             {
                 nbrElement++;
+
                 for (int j = nbrElement; j > i; j--)
                 {
                     tab[j] = tab[j - 1];
