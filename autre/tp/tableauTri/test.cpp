@@ -1,16 +1,29 @@
 #include "tableauTri.cpp"
 
+#include <iostream>
+using namespace std;
+using std::string;
+
 int main()
 {
-    // Instanciation d'un objet de la classe TableauTri avec un tableau de taille 5
-    TableauTri monTableau(5);
+    TableauTri monTableau1;
 
-    // Saisie des éléments du tableau par l'utilisateur
-    cin >> monTableau;
+    cin >> monTableau1;
 
-    // Affichage du tableau
-    cout << monTableau;
+    cout << monTableau1;
+
+    int taille2 = 0;
+    cout << "Taille tableau 2 = " << endl;
+    cin >> taille2;
+    TableauTri monTableau2(taille2);
+    
+    cin >> monTableau2;
+
+    TableauTri monTableau3(monTableau2);
+
+    cout << monTableau3 << endl;
 
     
+
     return 0;
 }

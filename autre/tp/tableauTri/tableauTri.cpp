@@ -5,7 +5,7 @@ using namespace std;
 using std::string;
 
 // CONSTRUCTORS
-TableauTri::TableauTri() : taille(10)
+TableauTri::TableauTri() : taille(3)
 {
     tab = new float[taille];
 }
