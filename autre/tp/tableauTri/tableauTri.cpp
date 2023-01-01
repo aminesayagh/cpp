@@ -112,36 +112,6 @@ TableauTri &TableauTri::operator+(float x)
         nbrElement++;
     }
     return *this;
-    cout << indexOfX << endl;
-    if (nbrElement == 0)
-    {
-        tab[0] = x;
-        nbrElement++;
-        return *this;
-    }
-    else
-    {
-        // case au millieu
-        for (int i = 0; i < nbrElement; i++)
-        {
-
-            if (x <= tab[i])
-            {
-                nbrElement++;
-
-                for (int j = nbrElement; j > i; j--)
-                {
-                    tab[j] = tab[j - 1];
-                }
-                tab[i] = x;
-                return *this;
-            }
-        }
-    }
-    // dernier case
-    nbrElement++;
-    tab[nbrElement] = x;
-    return *this;
 }
 
 TableauTri &TableauTri::operator+(const TableauTri &t)
