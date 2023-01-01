@@ -93,8 +93,6 @@ int TableauTri::operator>(float x)
 
 TableauTri &TableauTri::operator+(float x)
 {
-    int j = 0;
-    // premier case
     int indexOfX = -1;
     for(int i = 0; i < nbrElement && indexOfX == -1; i++){
         if(tab[i] >= x){
