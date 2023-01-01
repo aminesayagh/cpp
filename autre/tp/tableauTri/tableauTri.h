@@ -32,10 +32,13 @@ public:
     }
     friend istream &operator>>(istream &is, TableauTri &t)
     {
+        int value;
         for (int i = 0; i < t.taille; i++)
         {
             cout << "Saisir tab[" << i << "] = ";
-            is >> t.tab[i];
+            is >> value;
+            t = t + value;
+            // is >> t.tab[i];
         }
         return is;
     }

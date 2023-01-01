@@ -1,7 +1,11 @@
 #include "tableauTri.h"
 
+#include <iostream>
+using namespace std;
+using std::string;
+
 // CONSTRUCTORS
-TableauTri::TableauTri(): taille(10)
+TableauTri::TableauTri() : taille(10)
 {
     tab = new float[taille];
 }
@@ -90,20 +94,33 @@ int TableauTri::operator>(float x)
 TableauTri &TableauTri::operator+(float x)
 {
     int j = 0;
-    float *newTab = new float[taille + 1];
-    for (int i = 0; i < taille; i++)
+    // premier case
+    if (nbrElement == 0)
     {
-        if (tab[i + 1] >= x && j != 1)
-        {
-            newTab[i] = x;
-            j++;
-            taille++;
-        }
-        newTab[i + j] = tab[i];
+        tab[0] = x;
+        nbrElement++;
+        return *this;
     }
-    delete tab;
-
-    tab = newTab;
+    else
+    {
+        // case au millieu
+        for (int i = 0; i < nbrElement; i++)
+        {
+            if (x <= tab[i])
+            {
+                nbrElement++;
+                for (int j = nbrElement; j > i; j--)
+                {
+                    tab[j] = tab[j - 1];
+                }
+                tab[i] = x;
+                return *this;
+            }
+        }
+    }
+    // dernier case
+    nbrElement++;
+    tab[nbrElement] = x;
     return *this;
 }
 

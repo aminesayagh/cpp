@@ -2,24 +2,14 @@
 
 int main()
 {
-    TableauTri t1(10);
+    // Instanciation d'un objet de la classe TableauTri avec un tableau de taille 5
+    TableauTri monTableau(5);
 
-    cin >> t1;
+    // Saisie des éléments du tableau par l'utilisateur
+    cin >> monTableau;
 
-    cout << t1;
-
-    int freq = t1.frequence(5.0);
-    cout << "La fréquence de 5.0 dans le tableau est " << freq << endl;
-
-    t1.supprimer(5.0);
-
-    TableauTri t2 = t1;
-
-    t2 = t2 * 2;
-
-    TableauTriResp t3 = t2;
-
-    cout << t3;
+    // Affichage du tableau
+    cout << monTableau;
 
     return 0;
 }
