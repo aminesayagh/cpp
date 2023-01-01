@@ -114,37 +114,25 @@ TableauTri &TableauTri::operator+(float x)
 
 TableauTri &TableauTri::operator+(const TableauTri &t)
 {
-    int j = 0;
-    float *newTab = new float(taille + t.taille);
-
-    for (int i = 0; i < taille; i++)
-    {
-        if (tab[i + 1] >= t.tab[j])
-        {
-            taille++;
-            newTab[i + j] = t.tab[j];
-            j++;
-        }
-        newTab[i + j] = tab[i];
+    for(int i = 0; i < t.nbrElement; i++){
+        *this + t.tab[i];
     }
-    delete tab;
-    tab = newTab;
 
     return *this;
 }
 
 TableauTri &TableauTri::operator--()
 {
-    for (int i = 0; i < taille; i++)
+    for (int i = 0; i < nbrElement; i++)
     {
-        tab[i]++;
+        tab[i]--;
     }
     return *this;
 }
 
 TableauTri &TableauTri::operator*(float r)
 {
-    for (int i = 0; i < taille; i++)
+    for (int i = 0; i < nbrElement; i++)
     {
         tab[i] *= r;
     }
