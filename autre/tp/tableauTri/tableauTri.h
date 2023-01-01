@@ -54,7 +54,7 @@ public:
     TableauTriResp(int taille);
     TableauTriResp(const TableauTri &t) : TableauTri(t)
     {
-        for (int i = 0; i < taille; i++)
+        for (int i = 0; i < nbrElement; i++)
         {
             int nombreFrequence = frequence(tab[i]);
             if (nombreFrequence == 0)
@@ -76,7 +76,7 @@ public:
     }
     friend istream &operator>>(istream &is, TableauTriResp &t)
     {
-        for (int i = 0; i < t.taille; i++)
+        for (int i = 0; i < t.nbrElement; i++)
         {
             cout << "Saisir tab[" << i << "] = ";
             is >> t.tab[i];
