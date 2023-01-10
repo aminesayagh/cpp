@@ -1,5 +1,5 @@
 Ce code utilise plusieurs concepts clés de la programmation orientée objet en C++ :
-<h3>Classe</h3>
+Classe
 Une classe est un modèle pour créer des objets. Elle définit les données membres et les fonctions membres (appelées méthodes) qui peuvent être utilisées par ces objets. Dans ce code, la classe TableauTri est définie pour représenter un tableau trié d'éléments flottants.
 
 Données membres
@@ -13,7 +13,6 @@ Les constructeurs sont des fonctions membres spéciales qui sont appelées lorsq
 
 Destructeur
 Le destructeur est une fonction membre spéciale qui est appelée lorsqu'un objet est détruit. Il permet de libérer toutes les ressources utilisées par l'objet. Dans ce code, il existe un destructeur : ~TableauTri().
-Opérateurs : Les opérateurs sont des symboles spéciaux qui permettent de définir des opérations pour les objets de la classe. Les opérateurs peuvent être surchargés pour définir des comportements personnalisés pour les objets de la classe. Dans ce code, il y a plusieurs opérateurs surchargés tels que operator=(), operator+(), operator*(), operator--(), operator>>(), operator<<()
 
 L'héritage est un concept permettant à une classe de dériver d'une autre classe existante. La classe dérivée (ou sous-classe) hérite des données membres et des fonctions membres de la classe de base (ou superclasse). Elle peut également définir de nouvelles données membres et de nouvelles fonctions membres. Dans ce code, la classe TableauTriResp est dérivée de la classe TableauTri. Elle hérite de toutes les données membres et fonctions membres de TableauTri, et ajoute également les données membres elementRepeter et elementNonRepeter.
 
