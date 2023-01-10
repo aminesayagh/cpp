@@ -20,10 +20,10 @@ TableauTri::TableauTri(const TableauTri &t) : taille(t.taille)
     delete tab;
     tab = new float[t.taille];
 
-    for (int i = 0; i < t.taille; i++)
+    for (int i = 0; i < t.nbElis; i++)
     {
         tab[i] = t.tab[i];
-        nbrElement++;
+        nbElis++;
     }
 }
 
@@ -33,7 +33,7 @@ TableauTri::~TableauTri()
     tab = NULL;
 
     taille = 0;
-    nbrElement = 0;
+    nbElis = 0;
 }
 
 TableauTri &TableauTri::operator=(const TableauTri &t)
@@ -43,10 +43,10 @@ TableauTri &TableauTri::operator=(const TableauTri &t)
         delete tab;
         taille = t.taille;
         tab = new float[t.taille];
-        for (int i = 0; i < t.taille; i++)
+        for (int i = 0; i < t.nbElis; i++)
         {
             tab[i] = t.tab[i];
-            nbrElement++;
+            nbElis++;
         }
     }
 
@@ -57,7 +57,7 @@ TableauTri &TableauTri::operator=(const TableauTri &t)
 int TableauTri::frequence(float x)
 {
     int n = 0;
-    for (int i = 0; i < taille; i++)
+    for (int i = 0; i < nbElis && tab[i] <= x; i++)
     {
         if (tab[i] == x)
             n++;
@@ -68,12 +68,12 @@ int TableauTri::frequence(float x)
 void TableauTri::supprimer(float x)
 {
     int j = 0;
-    for (int i = 0; i < nbrElement; i++)
+    for (int i = 0; i < nbElis && tab[i] <= x; i++)
     {
         if (tab[i] == x)
         {
             j++;
-            nbrElement--;
+            nbElis--;
             tab[i] = tab[i + j + 1];
         }
     }
@@ -81,7 +81,7 @@ void TableauTri::supprimer(float x)
 
 int TableauTri::operator>(float x)
 {
-    for (int i = 0; i < nbrElement; i++)
+    for (int i = 0; i < nbElis; i++)
     {
         if (tab[i] == x)
             return i;
@@ -94,27 +94,27 @@ int TableauTri::operator>(float x)
 TableauTri &TableauTri::operator+(float x)
 {
     int indexOfX = -1;
-    for(int i = 0; i < nbrElement && indexOfX == -1; i++){
+    for(int i = 0; i < nbElis && indexOfX == -1; i++){
         if(tab[i] >= x){
             indexOfX = i;
         }
     }
     if(indexOfX == -1){
-        tab[nbrElement] = x;
-        nbrElement++;
+        tab[nbElis] = x;
+        nbElis++;
     }else{
-        for(int i = nbrElement; i > indexOfX; i--){
-            tab[i] = tab[i-1];
+        for(int i = nbElis; i > indexOfX; i--){
+            tab[i + 1] = tab[i-1];
         }
         tab[indexOfX] = x;
-        nbrElement++;
+        nbElis++;
     }
     return *this;
 }
 
 TableauTri &TableauTri::operator+(const TableauTri &t)
 {
-    for(int i = 0; i < t.nbrElement; i++){
+    for(int i = 0; i < t.nbElis; i++){
         *this + t.tab[i];
     }
 
@@ -123,21 +123,31 @@ TableauTri &TableauTri::operator+(const TableauTri &t)
 
 TableauTri &TableauTri::operator--()
 {
-    for (int i = 0; i < nbrElement; i++)
+    for (int i = 0; i < nbElis; i++)
     {
         tab[i]--;
     }
     return *this;
 }
 
-TableauTri &TableauTri::operator*(float r)
+TableauTri TableauTri::operator*(float r)
 {
-    for (int i = 0; i < nbrElement; i++)
+    for (int i = 0; i < nbElis; i++)
     {
         tab[i] *= r;
     }
     return *this;
 }
+
+float operator*(float r, TableauTri t)
+{
+    float result = r;
+    for (int i = 0; i < t.nbElis; i++){
+        r *= t.tab[i];
+    }
+    return r;
+}
+
 
 //  TableauTriResp
 TableauTriResp::TableauTriResp(int taille) : TableauTri(taille) {}
