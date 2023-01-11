@@ -54,6 +54,7 @@ TableauTri &TableauTri::operator=(const TableauTri &t)
 }
 
 // METHODS
+// Exercice 4
 int TableauTri::frequence(float x)
 {
     int n = 0;
@@ -65,6 +66,7 @@ int TableauTri::frequence(float x)
     return n;
 }
 
+// Exercice 5
 void TableauTri::supprimer(float x)
 {
     int j = 0;
