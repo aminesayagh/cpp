@@ -70,14 +70,14 @@ int TableauTri::frequence(float x)
 void TableauTri::supprimer(float x)
 {
     int j = 0;
-    for (int i = 0; i < nbElis && tab[i] <= x; i++)
+    for (int i = 0; i < nbElis; i++)
     {
         if (tab[i] == x)
         {
             j++;
             nbElis--;
-            tab[i] = tab[i + j + 1];
         }
+        tab[i] = tab[i + j];
     }
 }
 
