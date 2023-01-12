@@ -161,7 +161,7 @@ float operator*(float r, TableauTri t)
 
 istream &operator>>(istream &is, TableauTri &t)
 {
-    int value;
+    float value = 0;
     int nombreElement;
     cout << "Nombre element a inserer a votre tableau = ";
     is >> nombreElement;
@@ -170,7 +170,7 @@ istream &operator>>(istream &is, TableauTri &t)
     {
         cout << "Saisir tab[" << i << "] = ";
         is >> value;
-        t = t + value;
+        t = t + value; // j'utilise operateur + surcharge a la ligne 98 de ce fichier, ce qui me permet d'ajouter un element en gardent le trie de mon tableau 
     }
     return is;
 }
