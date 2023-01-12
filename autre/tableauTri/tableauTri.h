@@ -5,7 +5,7 @@ using std::string;
 // Exercice 1: Specifier completement la classe tableau_tri
 class TableauTri
 {
-private:
+protected:
     int taille;   // Taille maximale du tableau
     float *tab = NULL;   // Pointeur vers un tableau de flottants qui contiendra les données
     int nbElis = 0;  // Nombre d'éléments actuellement stockés dans le tableau
