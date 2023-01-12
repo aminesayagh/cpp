@@ -44,6 +44,7 @@ TableauTri &TableauTri::operator=(const TableauTri &t)
         delete tab;
         taille = t.taille;
         tab = new float[t.taille];
+        nbElis = 0;
         for (int i = 0; i < t.nbElis; i++)
         {
             tab[i] = t.tab[i];
