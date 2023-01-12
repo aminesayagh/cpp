@@ -222,7 +222,7 @@ istream &operator>>(istream &is, TableauTriResp &t)
         is >> nouvelleValeur;
         t + nouvelleValeur; // j'utilise operateur + surcharge a la ligne 98 de ce fichier, ce qui me permet d'ajouter un element en gardent le trie de mon tableau 
 
-        int nombreFrequence = t.frequence(t.tab[i]);
+        int nombreFrequence = t.frequence(nouvelleValeur);
         if (nombreFrequence == 0)
         {
             t.elementNonRepeter++;
