@@ -126,7 +126,7 @@ TableauTri &TableauTri::operator+(const TableauTri &t)
 {
     for (int i = 0; i < t.nbElis; i++)
     {
-        *this + t.tab[i];
+        this = *this + t.tab[i]; // j'utilise le surcharge d'operateur creer en ligne  98 du fichier pour ajouter les elemenets un a un au tableau
     }
 
     return *this;
