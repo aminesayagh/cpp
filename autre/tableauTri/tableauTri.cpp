@@ -114,7 +114,7 @@ TableauTri &TableauTri::operator+(float x)
     {
         for (int i = nbElis; i > indexOfX; i--)
         {
-            tab[i + 1] = tab[i - 1];
+            tab[i + 1] = tab[i];
         }
         tab[indexOfX] = x;
         nbElis++;
