@@ -152,7 +152,6 @@ TableauTri TableauTri::operator*(float r)
 
 float operator*(float r, TableauTri t)
 {
-    float result = r;
     for (int i = 0; i < t.nbElis; i++)
     {
         r *= t.tab[i];
