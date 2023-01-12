@@ -44,29 +44,8 @@ public:
     friend float operator*(float r, TableauTri);
 
     // Exercice 10: Implémenter les opérateurs >> et << pour la saisie et l'affichage
-    friend ostream &operator<<(ostream &os, const TableauTri &t)
-    {
-        for (int i = 0; i < t.nbElis; i++)
-        {
-            os << "tab[" << i << "] = " << t.tab[i] << endl;
-        }
-        return os;
-    }
-    friend istream &operator>>(istream &is, TableauTri &t)
-    {
-        int value;
-        int nombreElement;
-        cout << "Nombre element a inserer a votre tableau = ";
-        is >> nombreElement;
-        
-        for (int i = 0; i < nombreElement; i++)
-        {
-            cout << "Saisir tab[" << i << "] = ";
-            is >> value;
-            t = t + value;
-        }
-        return is;
-    }
+    friend ostream &operator<<(ostream &os, const TableauTri &t);
+    friend istream &operator>>(istream &is, TableauTri &t);
 };
 // Exercice partie B
 class TableauTriResp : public TableauTri
@@ -79,47 +58,9 @@ public:
     // Exerice 1
     TableauTriResp(int taille);
     // Exercice 2
-    TableauTriResp(const TableauTri &t) : TableauTri(t)
-    {
-        for (int i = 0; i < nbElis; i++)
-        {
-            int nombreFrequence = frequence(tab[i]);
-            if (nombreFrequence == 0)
-            {
-                elementNonRepeter++;
-            }
-            else if (nombreFrequence == 1)
-            {
-                elementNonRepeter--;
-                elementRepeter++;
-            }
-        }
-    }
+    TableauTriResp(const TableauTri &t);
 
-    friend ostream &operator<<(ostream &os, const TableauTriResp &t)
-    {
-        os << t << endl;
-        return os;
-    }
+    friend ostream &operator<<(ostream &os, const TableauTriResp &t);
     // Exercice 3
-    friend istream &operator>>(istream &is, TableauTriResp &t)
-    {
-        for (int i = 0; i < t.nbElis; i++)
-        {
-            cout << "Saisir tab[" << i << "] = ";
-            is >> t.tab[i];
-
-            int nombreFrequence = t.frequence(t.tab[i]);
-            if (nombreFrequence == 0)
-            {
-                t.elementNonRepeter++;
-            }
-            else if (nombreFrequence == 1)
-            {
-                t.elementNonRepeter--;
-                t.elementRepeter++;
-            }
-        }
-        return is;
-    }
+    friend istream &operator>>(istream &is, TableauTriResp &t);
 };

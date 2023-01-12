@@ -96,17 +96,23 @@ int TableauTri::operator>(float x)
 TableauTri &TableauTri::operator+(float x)
 {
     int indexOfX = -1;
-    for(int i = 0; i < nbElis && indexOfX == -1; i++){
-        if(tab[i] >= x){
+    for (int i = 0; i < nbElis && indexOfX == -1; i++)
+    {
+        if (tab[i] >= x)
+        {
             indexOfX = i;
         }
     }
-    if(indexOfX == -1){
+    if (indexOfX == -1)
+    {
         tab[nbElis] = x;
         nbElis++;
-    }else{
-        for(int i = nbElis; i > indexOfX; i--){
-            tab[i + 1] = tab[i-1];
+    }
+    else
+    {
+        for (int i = nbElis; i > indexOfX; i--)
+        {
+            tab[i + 1] = tab[i - 1];
         }
         tab[indexOfX] = x;
         nbElis++;
@@ -116,7 +122,8 @@ TableauTri &TableauTri::operator+(float x)
 
 TableauTri &TableauTri::operator+(const TableauTri &t)
 {
-    for(int i = 0; i < t.nbElis; i++){
+    for (int i = 0; i < t.nbElis; i++)
+    {
         *this + t.tab[i];
     }
 
@@ -144,12 +151,81 @@ TableauTri TableauTri::operator*(float r)
 float operator*(float r, TableauTri t)
 {
     float result = r;
-    for (int i = 0; i < t.nbElis; i++){
+    for (int i = 0; i < t.nbElis; i++)
+    {
         r *= t.tab[i];
     }
     return r;
 }
 
+istream &operator>>(istream &is, TableauTri &t)
+{
+    int value;
+    int nombreElement;
+    cout << "Nombre element a inserer a votre tableau = ";
+    is >> nombreElement;
+
+    for (int i = 0; i < nombreElement; i++)
+    {
+        cout << "Saisir tab[" << i << "] = ";
+        is >> value;
+        t = t + value;
+    }
+    return is;
+}
+
+ostream &operator<<(ostream &os, const TableauTri &t)
+{
+    for (int i = 0; i < t.nbElis; i++)
+    {
+        os << "tab[" << i << "] = " << t.tab[i] << endl;
+    }
+    return os;
+}
 
 //  TableauTriResp
 TableauTriResp::TableauTriResp(int taille) : TableauTri(taille) {}
+
+TableauTriResp::TableauTriResp(const TableauTri &t) : TableauTri(t)
+{
+    for (int i = 0; i < nbElis; i++)
+    {
+        int nombreFrequence = frequence(tab[i]);
+        if (nombreFrequence == 0)
+        {
+            elementNonRepeter++;
+        }
+        else if (nombreFrequence == 1)
+        {
+            elementNonRepeter--;
+            elementRepeter++;
+        }
+    }
+}
+
+ostream &operator<<(ostream &os, const TableauTriResp &t)
+{
+    os << t << endl;
+    return os;
+}
+
+istream &operator>>(istream &is, TableauTriResp &t)
+{
+    for (int i = 0; i < t.nbElis; i++)
+    {
+        cout << "Saisir tab[" << i << "] = ";
+        is >> t.tab[i];
+
+        int nombreFrequence = t.frequence(t.tab[i]);
+        if (nombreFrequence == 0)
+        {
+            t.elementNonRepeter++;
+        }
+        else if (nombreFrequence == 1)
+        {
+            t.elementNonRepeter--;
+            t.elementRepeter++;
+        }
+    }
+    return is;
+}
