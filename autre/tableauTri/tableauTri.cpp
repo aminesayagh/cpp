@@ -215,10 +215,12 @@ ostream &operator<<(ostream &os, const TableauTriResp &t)
 
 istream &operator>>(istream &is, TableauTriResp &t)
 {
+    float nouvelleValeur = 0;
     for (int i = 0; i < t.nbElis; i++)
     {
         cout << "Saisir tab[" << i << "] = ";
-        is >> t.tab[i];
+        is >> nouvelleValeur;
+        t + nouvelleValeur; // j'utilise operateur + surcharge a la ligne 98 de ce fichier, ce qui me permet d'ajouter un element en gardent le trie de mon tableau 
 
         int nombreFrequence = t.frequence(t.tab[i]);
         if (nombreFrequence == 0)
