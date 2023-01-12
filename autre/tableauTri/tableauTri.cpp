@@ -19,7 +19,8 @@ TableauTri::TableauTri(const TableauTri &t) : taille(t.taille)
 {
     delete tab;
     tab = new float[t.taille];
-
+    nbElis = 0;
+    
     for (int i = 0; i < t.nbElis; i++)
     {
         tab[i] = t.tab[i];
