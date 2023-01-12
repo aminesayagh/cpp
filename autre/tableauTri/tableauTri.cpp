@@ -206,7 +206,10 @@ TableauTriResp::TableauTriResp(const TableauTri &t) : TableauTri(t)
 
 ostream &operator<<(ostream &os, const TableauTriResp &t)
 {
-    os << t << endl;
+    for(int i = 0; i < t.nbElis; i++)
+    {
+        os << "tab[" << i << "] " << t.tab[i] << endl;
+    }
     return os;
 }
 
