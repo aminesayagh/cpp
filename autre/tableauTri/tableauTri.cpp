@@ -19,7 +19,8 @@ TableauTri::TableauTri(const TableauTri &t) : taille(t.taille)
 {
     delete tab;
     tab = new float[t.taille];
-
+    nbElis = 0;
+    
     for (int i = 0; i < t.nbElis; i++)
     {
         tab[i] = t.tab[i];
@@ -43,6 +44,7 @@ TableauTri &TableauTri::operator=(const TableauTri &t)
         delete tab;
         taille = t.taille;
         tab = new float[t.taille];
+        nbElis = 0;
         for (int i = 0; i < t.nbElis; i++)
         {
             tab[i] = t.tab[i];
@@ -70,14 +72,14 @@ int TableauTri::frequence(float x)
 void TableauTri::supprimer(float x)
 {
     int j = 0;
-    for (int i = 0; i < nbElis && tab[i] <= x; i++)
+    for (int i = 0; i < nbElis; i++)
     {
         if (tab[i] == x)
         {
             j++;
             nbElis--;
-            tab[i] = tab[i + j + 1];
         }
+        tab[i] = tab[i + j];
     }
 }
 
@@ -96,17 +98,23 @@ int TableauTri::operator>(float x)
 TableauTri &TableauTri::operator+(float x)
 {
     int indexOfX = -1;
-    for(int i = 0; i < nbElis && indexOfX == -1; i++){
-        if(tab[i] >= x){
+    for (int i = 0; i < nbElis && indexOfX == -1; i++)
+    {
+        if (tab[i] >= x)
+        {
             indexOfX = i;
         }
     }
-    if(indexOfX == -1){
+    if (indexOfX == -1)
+    {
         tab[nbElis] = x;
         nbElis++;
-    }else{
-        for(int i = nbElis; i > indexOfX; i--){
-            tab[i + 1] = tab[i-1];
+    }
+    else
+    {
+        for (int i = nbElis; i > indexOfX; i--)
+        {
+            tab[i + 1] = tab[i];
         }
         tab[indexOfX] = x;
         nbElis++;
@@ -116,8 +124,9 @@ TableauTri &TableauTri::operator+(float x)
 
 TableauTri &TableauTri::operator+(const TableauTri &t)
 {
-    for(int i = 0; i < t.nbElis; i++){
-        *this + t.tab[i];
+    for (int i = 0; i < t.nbElis; i++)
+    {
+        this = *this + t.tab[i]; // j'utilise le surcharge d'operateur creer en ligne  98 du fichier pour ajouter les elemenets un a un au tableau
     }
 
     return *this;
@@ -143,13 +152,86 @@ TableauTri TableauTri::operator*(float r)
 
 float operator*(float r, TableauTri t)
 {
-    float result = r;
-    for (int i = 0; i < t.nbElis; i++){
+    for (int i = 0; i < t.nbElis; i++)
+    {
         r *= t.tab[i];
     }
     return r;
 }
 
+istream &operator>>(istream &is, TableauTri &t)
+{
+    float value = 0;
+    int nombreElement;
+    cout << "Nombre element a inserer a votre tableau = ";
+    is >> nombreElement;
+
+    for (int i = 0; i < nombreElement; i++)
+    {
+        cout << "Saisir tab[" << i << "] = ";
+        is >> value;
+        t = t + value; // j'utilise operateur + surcharge a la ligne 98 de ce fichier, ce qui me permet d'ajouter un element en gardent le trie de mon tableau 
+    }
+    return is;
+}
+
+ostream &operator<<(ostream &os, const TableauTri &t)
+{
+    for (int i = 0; i < t.nbElis; i++)
+    {
+        os << "tab[" << i << "] = " << t.tab[i] << endl;
+    }
+    return os;
+}
 
 //  TableauTriResp
 TableauTriResp::TableauTriResp(int taille) : TableauTri(taille) {}
+
+TableauTriResp::TableauTriResp(const TableauTri &t) : TableauTri(t)
+{
+    for (int i = 0; i < nbElis; i++)
+    {
+        int nombreFrequence = frequence(tab[i]);
+        if (nombreFrequence == 0)
+        {
+            elementNonRepeter++;
+        }
+        else if (nombreFrequence == 1)
+        {
+            elementNonRepeter--;
+            elementRepeter++;
+        }
+    }
+}
+
+ostream &operator<<(ostream &os, const TableauTriResp &t)
+{
+    for(int i = 0; i < t.nbElis; i++)
+    {
+        os << "tab[" << i << "] " << t.tab[i] << endl;
+    }
+    return os;
+}
+
+istream &operator>>(istream &is, TableauTriResp &t)
+{
+    float nouvelleValeur = 0;
+    for (int i = 0; i < t.nbElis; i++)
+    {
+        cout << "Saisir tab[" << i << "] = ";
+        is >> nouvelleValeur;
+        t + nouvelleValeur; // j'utilise operateur + surcharge a la ligne 98 de ce fichier, ce qui me permet d'ajouter un element en gardent le trie de mon tableau 
+
+        int nombreFrequence = t.frequence(nouvelleValeur);
+        if (nombreFrequence == 0)
+        {
+            t.elementNonRepeter++;
+        }
+        else if (nombreFrequence == 1)
+        {
+            t.elementNonRepeter--;
+            t.elementRepeter++;
+        }
+    }
+    return is;
+}
