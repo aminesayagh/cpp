@@ -10,10 +10,10 @@ int main() {
 
     Polynome polynome_1(2, coefficient1);
     Polynome polynome_2(1, coefficient2);
-    polynome_1.afficher();
-    polynome_2.afficher();
+    cout << polynome_1 << endl;
+    cout << polynome_2 << endl;
 
     polynome_2 = polynome_2 + polynome_1;
-    polynome_2.afficher();
+    cout << polynome_2 << endl;
     return 0;
 }

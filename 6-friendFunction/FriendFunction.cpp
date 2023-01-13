@@ -25,5 +25,5 @@ int main(){
     EquilateralTriangle triangle;
     triangle.setA(5);
 
-    PrintResult(triangle);
+    triangle.PrintResult(triangle);
 }
