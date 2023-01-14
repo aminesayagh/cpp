@@ -44,8 +44,8 @@ public:
     friend float operator*(float r, TableauTri);
 
     // Exercice 10: Implémenter les opérateurs >> et << pour la saisie et l'affichage
-    friend ostream &operator<<(ostream &os, const TableauTri &t);
-    friend istream &operator>>(istream &is, TableauTri &t);
+    friend ostream &operator<<(ostream &os, const TableauTri &t); // cout << 
+    friend istream &operator>>(istream &is, TableauTri &t); // cin >>
 };
 // Exercice partie B
 class TableauTriResp : public TableauTri
